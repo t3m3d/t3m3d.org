@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brian's Information System Support</title>
+    <link rel="icon" type="image/png" href="icon.png">
+	<link rel="stylesheet" href="https://www.t3m3d.org/blog/style.css">
+  <link rel="stylesheet" href="https://www.t3m3d.org/assets/css/style1.css">
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+
+  /* Dark mode styles */
+
+    body.dark-mode .header {
+      background-color: #333;
+      color: white;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    body.dark-mode .card {
+      background-color: #333;
+      color: white;
+    }
+/* Dark mode for form */
+body.dark-mode form {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark-mode input[type=text], 
+body.dark-mode input[type=email], 
+body.dark-mode textarea {
+  background: #555;
+  color: white;
+  border: 1px solid #777;
+}
+
+body.dark-mode input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+body.dark-mode input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+    body.dark-mode footer {
+      background-color: #333;
+      color: white;
+    }
+
+    body.dark-mode .footer-links a {
+      color: #f2f2f2;
+    }
+    body.dark-mode .footer-links a:hover {
+      color: #ddd;
+      text-decoration: underline;
+    }
+    /* Centering and spacing the switch and label */
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.switch-label {
+  margin-right: 10px; /* Adjust spacing between label and switch */
+  font-size: 18px; /* Adjust font size to match your design */
+  color: #333; /* Adjust color as needed */
+}
+
+/* The switch CSS (for reference) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+	/* General styles for the card */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  transition: background-color 0.4s, color 0.4s; /* Smooth transition for dark mode */
+}
+
+/* Dark mode card styling */
+body.dark-mode .card {
+  background-color: #333;
+  color: white;
+}
+
+/* Service container styles */
+.services-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Each column in the service list */
+.service-column {
+  width: 45%; /* Adjust width to ensure columns fit nicely */
+}
+
+.service-column ul {
+  list-style-type: none; /* Remove default list style */
+  padding: 0;
+}
+
+.service-column li {
+  margin-bottom: 10px;
+}
+.service-header {
+  font-weight: bold;
+  font-size: 20px;
+  color: #ddd; /* Customize color as needed */
+  text-decoration: underline; /* Optional underline */
+}
+
+.styled-list {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+}
+
+.styled-list li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.bullet {
+  color: #808080; /* Customize bullet color as needed */
+  margin-right: 10px; /* Space between bullet and text */
+  display: inline-block;
+}
+
+  </style>
+</head>
+<body>
+  <div class="topnav">
+    <a href="https://www.t3m3d.org/index.html" class="active">Home</a>
+    <a href="https://www.t3m3d.org/blog/index.html" class="topnav">Blog</a>
+    <a href="https://www.ebay.com/usr/shoesandtechbyt3m3d" class="topnav">Store</a>
+    <a href="https://www.t3m3d.org/reports/index.html" class="topnav">Educational Reports</a>
+    <a href="https://www.t3m3d.org/recovery/index.html" class="topnav">Recovery</a>
+    <a href="https://www.t3m3d.org/resources/mentalhealth.html" class="topnav">Mental Health</a>
+    <a href="https://www.t3m3d.org/resources/jobs.html" class="topnav">Job Resources</a>
+  </div>
+  
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+    if (currentTheme) {
+        document.body.classList.add(currentTheme);
+
+        if (currentTheme === 'dark-mode') {
+            themeToggle.checked = true;
+        }
+    }
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light-mode');
+        }
+    });
+});
+</script>
+  <div class="header">
+    <h2>Brian's Information Systems</h2>
+    <h5>Computer and Network Services</h5>
+    <h6>Serving Louisville, Jeffersonville, and New Albany</h6>
+    <div class="switch-container">
+	<span class="switch-label">Dark/Light Mode</span>
+	    <label class="switch">
+      		<input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+  </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>A little about where we came from and what we do.</hi2>
+        <h5>I was born in a small town in Southern Kentucky and grew up two miles outside of a community that was made up of approx. 25 people. My closest neighbors have always been my family. It is one of those counties where everybody knows everybody. I had an amazing childhood. Some of my earliest memories are of opening presents with my sister at my mom's house when we were both still kids. I had the priviledge of learning Tang Soo Do as a teenager thanks to my family. but as soon as I had the chance I started working in a factory and started to build a family the best way I knew. I never really liked school, and I quit High School my Sophmore year. My sister was an amazing student and I admired that she went to college straight out of school. A short couple years after High School I got my GED and took some nursing classes to land what I thought was my dream job until some of our patients where I worked passed away. Then, hoping to make some sort of impact on the world, I went back to school persuing a Law Enforcement Administration degree. I realized 63 credits into a 90 credit degree that this was not my passion and decided to give technology another try. I changed my major to a BS of Information Technology and have not regretted it yet. I worked full time the second half of my degree, so it was a challange, but I managent to get a Presidents and Deans list award a few times and graduated my program September of 2024. I have had the blessing of having a very supportive family no matter what choices I make in life. They have always pushed me in the right direction and given me the chance to work in many different fields over the years as I searched my calling out. Without God, My Amazing Son, Grandmother, Mother, Father, Sister, Uncles, and cousins I would not be in the position I am today.</h5>
+	 
+      </div>
+	<div class="card">
+	 <h2>Services Offered</h2>
+  	 <div class="services-container">
+	  <div class="service-column">
+	   <h3 class="service-header">Website Development and Design:</h3>
+	   <ul class="styled-list">
+	    <li><span class="bullet">&#x2714;</span>Basic Websites: Creating simple websites using platforms like WordPress or Wix.</li>
+	    <li><span class="bullet">&#x2714;</span>E-commerce Stores: Setting up online stores for clients selling products or services.</li>
+	    <li><span class="bullet">&#x2714;</span>Custom Website Design: Designing and building more complex websites from scratch.</li>
+	   </ul>
+	   <h3 class="service-header">IT Consulting and Support</h3>
+	   <ul class="styled-list">
+	    <li><span class="bullet">&#x2714;</span>Troubleshooting: Helping individuals and small businesses resolve computer and network issues.</li>
+	    <li><span class="bullet">&#x2714;</span>Hardware and Software Setup: Installing and configuring new devices and software.</li>
+	    <li><span class="bullet">&#x2714;</span>Network Setup: Designing and implementing basic networks for homes or small businesses.</li>
+	    <li><span class="bullet">&#x2714;</span>Cybersecurity Basics: Providing guidance on protecting against common online threats.</li>
+	   </ul>
+	  </div>
+	    <div class="service-column">
+	   <h3 class="service-header">Data Entry and Management:</h3>
+	   <ul class="styled-list">
+	    <li><span class="bullet">&#x2714;</span>Data Cleaning: Organizing and formatting data for better analysis.</li>
+	    <li><span class="bullet">&#x2714;</span>Data Entry: Manually inputting data into spreadsheets or databases.</li>
+	    <li><span class="bullet">&#x2714;</span>Data Analysis: Using basic tools to analyze and summarize data.</li>
+	    </ul>
+	   <h3 class="service-header">Technical Writing:</h3>
+	   <ul class="styled-list">
+	    <li><span class="bullet">&#x2714;</span>User Manuals: Creating clear and concise documentation for software or hardware.</li>
+	    <li><span class="bullet">&#x2714;</span>Blog Posts: Writing informative articles on technology topics.</li>
+	    <li><span class="bullet">&#x2714;</span>Technical Specifications: Developing detailed technical specifications.</li>
+	    </ul>
+	    </div>
+	 
+  </div>
+       
+      </div>
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>About Me</h2>
+        <div class="fakeimg" style="height:100px;">
+          <image src="assets/images/aboutme.jpg" height="150" width="250" alt="About Me"></image>
+        </div>
+        <p>A guy that grew up in the country with a computer to keep him busy at night turned Information Technologist.</p>
+      </div>
+      <div class="card">
+        <h3>Popular Post</h3>
+        <div class="fakeimg">
+          <image height="150" width="250" src="https://www.t3m3d.org/assets/images/m3i.jpeg" alt="3 Mile Island"></image>
+        </div><br>
+        <div class="fakeimg">Coming Soon!</div><br>
+        <div class="fakeimg">Coming Soon!</div>
+      </div>
+      <div class="card">
+        <h3>Follow Me</h3>
+	<a href="https://in.t3m3d.org">LinkedIn</a>
+	<a href="https://portfolio.t3m3d.org">My Portfolio</a>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>Author: Brian Thompson</p>
+    <p><a href="mailto:webmaster@t3m3d.org">webmaster@t3m3d.org</a></p>
+    <p>&copy; 2024 t3m3d/t3d3v</p>
+    <div class="footer-links">
+      <a href="http://in.t3m3d.org" class="footer-links">LinkedIn</a>
+      <a href="http://github.t3m3d.org" class="footer-links">GitHub</a>
+      <a href="http://gitlab.t3m3d.org" class="footer-links">GitLab</a>
+      <a href="http://portfolio.t3m3d.org" class="footer-links">Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('change', function() {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>
+

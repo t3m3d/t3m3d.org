@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Writings From University</title>
+    <link rel="icon" type="image/png" href="icon.png">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View My Writings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .content {
+            padding: 16px;
+            margin-top: 50px; /* Add a top margin to avoid content overlay */
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="https://www.t3m3d.org/index.html" class="topnav">Home</a>
+    <a href="https://www.t3m3d.org/blog/index.html" class="topnav">Blog</a>
+    <a href="https://www.ebay.com/usr/shoesandtechbyt3m3d" class="topnav">Store</a>
+    <a href="https://www.t3m3d.org/reports/index.html" class="topnav">Educational Reports</a>
+    <a href="https://www.t3m3d.org/resources/recovery.html" class="topnav">Recovery</a>
+    <a href="https://www.t3m3d.org/resources/mentalhealth.html" class="topnav">Mental Health</a>
+    <a href="https://www.t3m3d.org/resources/jobs.html" class="topnav">Job Resources</a>
+</div>
+
+<div class="content">
+    <h2>View My Writings</h2>
+    <div id="htmlContent"></div>
+</div>
+
+<script>
+    // Load HTML files from the /papers directory
+    function loadPapers() {
+        const container = document.getElementById('htmlContent');
+        fetch('/papers/list.json')
+            .then(response => response.json())
+            .then(files => {
+                files.forEach(file => {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = `/papers/${file}`;
+                    iframe.width = "100%";
+                    iframe.height = "600px";
+                    iframe.style.border = "none";
+                    container.appendChild(iframe);
+                });
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPapers);
+</script>
+
+</body>
+</html>
+

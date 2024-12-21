@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovery is the way!</title>
+    <link rel="icon" type="image/png" href="icon.png">
+	<link rel="stylesheet" href="https://www.t3m3d.org/blog/style.css">
+  <link rel="stylesheet" href="https://www.t3m3d.org/assets/css/style1.css">
+  <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+/* Form styling */
+form {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type=text], input[type=email], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+  /* Dark mode styles */
+
+    body.dark-mode .header {
+      background-color: #333;
+      color: white;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    body.dark-mode .card {
+      background-color: #333;
+      color: white;
+    }
+/* Dark mode for form */
+body.dark-mode form {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+body.dark-mode input[type=text], 
+body.dark-mode input[type=email], 
+body.dark-mode textarea {
+  background: #555;
+  color: white;
+  border: 1px solid #777;
+}
+
+body.dark-mode input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+}
+
+body.dark-mode input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+    body.dark-mode footer {
+      background-color: #333;
+      color: white;
+    }
+
+    body.dark-mode .footer-links a {
+      color: #f2f2f2;
+    }
+    body.dark-mode .footer-links a:hover {
+      color: #ddd;
+      text-decoration: underline;
+    }
+    /* Centering and spacing the switch and label */
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.switch-label {
+  margin-right: 10px; /* Adjust spacing between label and switch */
+  font-size: 18px; /* Adjust font size to match your design */
+  color: #333; /* Adjust color as needed */
+}
+
+/* The switch CSS (for reference) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+  </style>
+</head>
+<body>
+  <div class="topnav">
+    <a href="https://www.t3m3d.org/index.html" class="topnav">Home</a>
+    <a href="https://www.t3m3d.org/blog/index.html" class="topnav">Blog</a>
+    <a href="https://www.ebay.com/usr/shoesandtechbyt3m3d" class="topnav">Store</a>
+    <a href="https://www.t3m3d.org/reports/index.html" class="topnav">Educational Reports</a>
+    <a href="https://www.t3m3d.org/recovery/index.html" class="active">Recovery</a>
+    <a href="https://www.t3m3d.org/resources/mentalhealth.html" class="topnav">Mental Health</a>
+    <a href="https://www.t3m3d.org/resources/jobs.html" class="topnav">Job Resources</a>
+  </div>
+  
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+    if (currentTheme) {
+        document.body.classList.add(currentTheme);
+
+        if (currentTheme === 'dark-mode') {
+            themeToggle.checked = true;
+        }
+    }
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light-mode');
+        }
+    });
+});
+</script>
+  <div class="header">
+    <h2>Recovery Resources</h2>
+    <h5>AA, NA, CA, CR, and other Recovery Programs Information</h5>
+    <div class="switch-container">
+	<span class="switch-label">Dark/Light Mode</span>
+	    <label class="switch">
+      		<input type="checkbox" id="theme-toggle">
+      <span class="slider round"></span>
+  </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>Stories</hi2>
+		<p>I am also in recovery, these stories are stories that keep me from returning to the life I once lived.</p>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/prPmxw2Cm-o?si=8CS-PwCWD281wmzn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+	<div class="card">
+		<h2>This story shows me what I know my mother andfather was afraid would happen if they didn't do something to change the things around them.</h2>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/I_jgfL5bEtA?si=PpHTvBzXBSOG_lxM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>About Me</h2>
+        <div class="fakeimg" style="height:100px;">
+          <image src="assets/images/aboutme.jpg" height="150" width="250" alt="About Me"></image>
+        </div>
+        <p>A guy that grew up in the country with a computer to keep him busy at night turned Information Technologist.</p>
+      </div>
+      <div class="card">
+        <h3>Popular Post</h3>
+        <div class="fakeimg">
+          <image height="150" width="250" src="https://www.t3m3d.org/assets/images/m3i.jpeg" alt="3 Mile Island"></image>
+        </div><br>
+        <div class="fakeimg">Coming Soon!</div><br>
+        <div class="fakeimg">Coming Soon!</div>
+      </div>
+      <div class="card">
+        <h3>Follow Me</h3>
+        <p>Links in Footer.</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>Author: Brian Thompson</p>
+    <p><a href="mailto:webmaster@t3m3d.org">webmaster@t3m3d.org</a></p>
+    <p>&copy; 2024 t3m3d/t3d3v</p>
+    <div class="footer-links">
+      <a href="http://in.t3m3d.org" class="footer-links">LinkedIn</a>
+      <a href="http://github.t3m3d.org" class="footer-links">GitHub</a>
+      <a href="http://gitlab.t3m3d.org" class="footer-links">GitLab</a>
+      <a href="http://portfolio.t3m3d.org" class="footer-links">Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('change', function() {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+</body>
+</html>
+
